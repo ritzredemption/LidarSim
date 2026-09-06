@@ -1,0 +1,136 @@
+# ---------------------------------------------------------------------------
+# Packaged Unreal build — distributed via download link, not the repository
+# ---------------------------------------------------------------------------
+# The build is far past GitHub's file size limits. Keep the link in the README.
+#
+# Note the trailing /* rather than /: excluding the directory itself would stop
+# git descending into it, and the negation below would never be considered.
+LidarExe/*
+!LidarExe/README.md
+*.exe
+*.pdb
+*.dll
+*.lib
+*.pak
+*.ucas
+*.utoc
+*.sig
+
+# Unreal build and cook artifacts, wherever they appear
+Binaries/
+Intermediate/
+DerivedDataCache/
+Saved/
+Build/
+.vs/
+*.VC.db
+*.opensdf
+*.sdf
+*.suo
+
+# ---------------------------------------------------------------------------
+# Large media — hosted externally
+# ---------------------------------------------------------------------------
+*.mov
+*.MOV
+*.mp4
+*.avi
+*.mkv
+*.webm
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+
+# ---------------------------------------------------------------------------
+# Generated point clouds
+# ---------------------------------------------------------------------------
+# Written by the simulation at runtime and overwritten on every export, so they
+# are output rather than source.
+*.ply
+*.pcd
+*.las
+*.laz
+*.bag
+*.npz
+
+# To ship a small reference capture anyway, put it in samples/ and force-add it:
+#     git add -f samples/example.ply
+!samples/*.ply
+
+# ---------------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Environments
+.venv/
+venv/
+env/
+ENV/
+.conda/
+
+# Tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+
+# ---------------------------------------------------------------------------
+# Secrets and local configuration
+# ---------------------------------------------------------------------------
+# Never commit these. If a local override file is needed, ship a
+# settings.example.json and keep the real one out.
+.env
+.env.*
+*.local
+secrets.*
+credentials.*
+config.local.*
+settings.local.*
+*.pem
+*.key
+*.pfx
+*.p12
+*_token
+*.credentials
+
+# ---------------------------------------------------------------------------
+# Editors
+# ---------------------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ---------------------------------------------------------------------------
+# Operating system
+# ---------------------------------------------------------------------------
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+.Spotlight-V100
+.Trashes
+
+# ---------------------------------------------------------------------------
+# Logs and scratch
+# ---------------------------------------------------------------------------
+*.log
+logs/
+tmp/
+temp/
+scratch/
