@@ -1,4 +1,4 @@
-# LidarSim — Synthetic LiDAR Demo
+# LidarSim
 
 ![LiDAR simulation demo](LidarVid.gif)
 
@@ -8,14 +8,14 @@ simulation and inspecting the results live.
 
 The demo is built with two Unreal Engine 5 plugins:
 
-- **[Synthetic Sensor Data — LiDAR simulation](https://www.fab.com/listings/c172b7cc-627b-4665-a35b-3af1f253486c)** — the sensor model that produces the point clouds
-- **BBoxGen — 3D bounding box annotation** — the ground-truth boxes drawn around objects
+- **[Synthetic Sensor Data](https://www.fab.com/listings/c172b7cc-627b-4665-a35b-3af1f253486c)** for the LiDAR sensor model that produces the point clouds
+- **BBoxGen** for the 3D ground-truth bounding boxes drawn around objects
 
 Both are available on Fab from publisher **ritzredemption**.
 
 > **This repository contains the tooling and documentation only.**
 > The packaged simulation build is several gigabytes and is distributed
-> separately — see [Download the simulation](#2-download-the-simulation).
+> separately. See [Download the simulation](#2-download-the-simulation).
 
 ---
 
@@ -53,8 +53,8 @@ more than geometry:
 - **Ring index**, identifying which vertical channel produced each point, the
   same way a real driver reports it
 - **Per-point timing** within the frame, which is what makes motion distortion
-  reproducible — a rotating sensor samples different directions at different
-  instants
+  reproducible, since a rotating sensor samples different directions at
+  different instants
 - **Semantic labels** for vehicles and pedestrians, so exports are usable as
   annotated data without a separate labelling pass
 
@@ -89,7 +89,7 @@ between them freely without restarting.
 
 The packaged Windows build is hosted externally because of its size.
 
-**[Download the simulation build](https://drive.google.com/file/d/1xn5-PIi2vCpeT7G4sycFiuqEGzJhOkj_/view?usp=drive_link)**
+**[Download the simulation build](https://drive.google.com/file/d/1xn5-PIi2vCpeT7G4sycFiuqEGzJhOkj_/view?usp=sharing)**
 
 Extract it so that the `LidarExe` folder sits next to the Python scripts:
 
@@ -116,8 +116,8 @@ in the download.
 
 | File | Purpose |
 |------|---------|
-| `AutoSimExe.py` | Full workbench — launches and embeds the simulation, with three live point cloud views alongside it |
-| `lidar_viewer.py` | Standalone viewer — opens and inspects a `.ply` without running the simulation |
+| `AutoSimExe.py` | Full workbench. Launches and embeds the simulation, with three live point cloud views alongside it |
+| `lidar_viewer.py` | Standalone viewer. Opens and inspects a `.ply` without running the simulation |
 | `LidarVid.gif` | Demo recording shown above |
 | `README.md` | This file |
 | `LICENSE` | License terms |
@@ -160,7 +160,7 @@ python AutoSimExe.py
 3. Press **P** to export the current point cloud.
 4. All three point cloud views update within half a second.
 
-Press **P** as often as you like — each export replaces the previous file and
+Press **P** as often as you like. Each export replaces the previous file and
 the views follow, so it behaves as a live feed.
 
 To inspect an existing capture without running the simulation:
@@ -179,15 +179,15 @@ python lidar_viewer.py path\to\file.ply
 | `P` | Export the current point cloud to `PointCloudOutput.ply` |
 | `M` | Open the menu |
 
-**`P` — export.** Writes the point cloud next to the executable. Each press
+**`P` exports.** Writes the point cloud next to the executable. Each press
 overwrites the previous file, so copy it under another name to keep a
 particular capture.
 
-**`M` — menu.** Switch levels and toggle the bounding box overlay. Levels are
+**`M` opens the menu.** Switch levels and toggle the bounding box overlay. Levels are
 grouped by what they demonstrate: LiDAR scanning, or bounding boxes under
 adverse conditions.
 
-Click the simulation pane before pressing keys — keyboard focus follows the
+Click the simulation pane before pressing keys. Keyboard focus follows the
 last pane you clicked.
 
 ---
@@ -224,7 +224,7 @@ samples one azimuth at a time rather than the whole scene at once.
 ### Filters
 
 Minimum and maximum range isolate a distance band. Semantic class checkboxes
-hide whole classes — unticking *background* leaves only labelled objects, which
+hide whole classes. Unticking *background* leaves only labelled objects, which
 is the quickest way to see how much of a vehicle or pedestrian actually survives
 at range or in bad weather.
 
@@ -247,8 +247,8 @@ per-class breakdown, updated on every reload.
 | `time` | Seconds since the start of the frame |
 | `label` | 0 background, 1 vehicle, 2 pedestrian |
 
-Any PLY tool reads the positions. Note that most readers — including Open3D's
-own — keep only `x`, `y`, `z` and silently discard the rest, which is why the
+Any PLY tool reads the positions. Note that most readers, including Open3D's
+own, keep only `x`, `y`, `z` and silently discard the rest, which is why the
 tools here parse the file directly.
 
 If you process this data further, use the per-point `time` rather than a single
@@ -287,7 +287,7 @@ Publisher: **ritzredemption**
 
 **The Launch button is greyed out.** No executable was found. Check that
 `LidarExe` was extracted next to the Python scripts, or use **Browse for
-executable…** to point at it directly.
+executable** to point at it directly.
 
 **The simulation opens in its own window instead of inside the workbench.**
 Embedding is a Windows-only convenience and does not always succeed. The header
