@@ -30,7 +30,7 @@ Built with the **AutoSimGen** sensor simulation plugin for Unreal Engine 5.
 
 ## 1. What the simulation contains
 
-The demo is a drivable city scene with a LiDAR sensor mounted on the vehicle.
+The demo is a drivable small  scene with a LiDAR sensor mounted on the vehicle.
 It is built to show what the sensor model produces rather than to be a game, so
 everything is arranged around inspecting sensor output.
 
@@ -82,7 +82,7 @@ between them freely without restarting.
 
 The packaged Windows build is hosted externally because of its size.
 
-**Download:** *[add your Drive link here]*
+**Download:** *[https://drive.google.com/file/d/1xn5-PIi2vCpeT7G4sycFiuqEGzJhOkj_/view?usp=drive_link]*
 
 Extract it so that the `LidarExe` folder sits next to the Python scripts:
 
