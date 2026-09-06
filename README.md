@@ -1,10 +1,17 @@
-# LidarSim Synthetic LiDAR Demo
+# LidarSim — Synthetic LiDAR Demo
 
-A packaged Unreal Engine demo that simulates an automotive LiDAR sensor in a
-city environment, exports annotated point clouds, and a Python workbench for
-launching the simulation and inspecting the results live.
+![LiDAR simulation demo](LidarVid.gif)
 
-Built with the **AutoSimGen** sensor simulation plugin for Unreal Engine 5.
+A packaged Unreal Engine demo that simulates an automotive LiDAR sensor,
+exports annotated point clouds, and a Python workbench for launching the
+simulation and inspecting the results live.
+
+The demo is built with two Unreal Engine 5 plugins:
+
+- **[Synthetic Sensor Data — LiDAR simulation](https://www.fab.com/listings/c172b7cc-627b-4665-a35b-3af1f253486c)** — the sensor model that produces the point clouds
+- **BBoxGen — 3D bounding box annotation** — the ground-truth boxes drawn around objects
+
+Both are available on Fab from publisher **ritzredemption**.
 
 > **This repository contains the tooling and documentation only.**
 > The packaged simulation build is several gigabytes and is distributed
@@ -30,8 +37,8 @@ Built with the **AutoSimGen** sensor simulation plugin for Unreal Engine 5.
 
 ## 1. What the simulation contains
 
-The demo is a drivable small  scene with a LiDAR sensor mounted on the vehicle.
-It is built to show what the sensor model produces rather than to be a game, so
+The demo is a drivable scene with a LiDAR sensor mounted on the vehicle. It is
+built to show what the sensor model produces rather than to be a game, so
 everything is arranged around inspecting sensor output.
 
 ### LiDAR scanning
@@ -46,7 +53,7 @@ more than geometry:
 - **Ring index**, identifying which vertical channel produced each point, the
   same way a real driver reports it
 - **Per-point timing** within the frame, which is what makes motion distortion
-  reproducible a rotating sensor samples different directions at different
+  reproducible — a rotating sensor samples different directions at different
   instants
 - **Semantic labels** for vehicles and pedestrians, so exports are usable as
   annotated data without a separate labelling pass
@@ -82,7 +89,7 @@ between them freely without restarting.
 
 The packaged Windows build is hosted externally because of its size.
 
-**Download:** *[https://drive.google.com/file/d/1xn5-PIi2vCpeT7G4sycFiuqEGzJhOkj_/view?usp=drive_link]*
+**[Download the simulation build](https://drive.google.com/file/d/1xn5-PIi2vCpeT7G4sycFiuqEGzJhOkj_/view?usp=drive_link)**
 
 Extract it so that the `LidarExe` folder sits next to the Python scripts:
 
@@ -109,8 +116,9 @@ in the download.
 
 | File | Purpose |
 |------|---------|
-| `AutoSimExe.py` | Full workbench launches and embeds the simulation, with three live point cloud views alongside it |
-| `lidar_viewer.py` | Standalone viewer opens and inspects a `.ply` without running the simulation |
+| `AutoSimExe.py` | Full workbench — launches and embeds the simulation, with three live point cloud views alongside it |
+| `lidar_viewer.py` | Standalone viewer — opens and inspects a `.ply` without running the simulation |
+| `LidarVid.gif` | Demo recording shown above |
 | `README.md` | This file |
 | `LICENSE` | License terms |
 | `.gitignore` | Excludes the build, media and generated point clouds |
@@ -152,7 +160,7 @@ python AutoSimExe.py
 3. Press **P** to export the current point cloud.
 4. All three point cloud views update within half a second.
 
-Press **P** as often as you like each export replaces the previous file and
+Press **P** as often as you like — each export replaces the previous file and
 the views follow, so it behaves as a live feed.
 
 To inspect an existing capture without running the simulation:
@@ -171,15 +179,15 @@ python lidar_viewer.py path\to\file.ply
 | `P` | Export the current point cloud to `PointCloudOutput.ply` |
 | `M` | Open the menu |
 
-**`P` export.** Writes the point cloud next to the executable. Each press
+**`P` — export.** Writes the point cloud next to the executable. Each press
 overwrites the previous file, so copy it under another name to keep a
 particular capture.
 
-**`M` menu.** Switch levels and toggle the bounding box overlay. Levels are
+**`M` — menu.** Switch levels and toggle the bounding box overlay. Levels are
 grouped by what they demonstrate: LiDAR scanning, or bounding boxes under
 adverse conditions.
 
-Click the simulation pane before pressing keys keyboard focus follows the
+Click the simulation pane before pressing keys — keyboard focus follows the
 last pane you clicked.
 
 ---
@@ -216,7 +224,7 @@ samples one azimuth at a time rather than the whole scene at once.
 ### Filters
 
 Minimum and maximum range isolate a distance band. Semantic class checkboxes
-hide whole classes unticking *background* leaves only labelled objects, which
+hide whole classes — unticking *background* leaves only labelled objects, which
 is the quickest way to see how much of a vehicle or pedestrian actually survives
 at range or in bad weather.
 
@@ -239,8 +247,8 @@ per-class breakdown, updated on every reload.
 | `time` | Seconds since the start of the frame |
 | `label` | 0 background, 1 vehicle, 2 pedestrian |
 
-Any PLY tool reads the positions. Note that most readers including Open3D's
-own keep only `x`, `y`, `z` and silently discard the rest, which is why the
+Any PLY tool reads the positions. Note that most readers — including Open3D's
+own — keep only `x`, `y`, `z` and silently discard the rest, which is why the
 tools here parse the file directly.
 
 If you process this data further, use the per-point `time` rather than a single
@@ -260,15 +268,17 @@ toggle for it.
 It is a compiled build, so the sensor's Blueprint properties are not reachable
 from outside it. What you see is one preset.
 
-The **AutoSimGen plugin** exposes the sensor as a Blueprint component with
-editable properties: channel count, horizontal and vertical field of view,
-angular resolution, minimum and maximum range, rotation rate, range noise,
-semantic class rules and export settings. Weather and bounding box generation
-are configurable the same way.
+The plugins expose the sensor as a Blueprint component with editable properties:
+channel count, horizontal and vertical field of view, angular resolution,
+minimum and maximum range, rotation rate, range noise, semantic class rules and
+export settings. Weather and bounding box generation are configurable the same
+way.
 
-To use the sensor in your own scenes, get the plugin:
+To use these in your own scenes:
 
-**Fab marketplace:** *[add your Fab listing link here]*
+- **LiDAR simulation:** [Synthetic Sensor Data on Fab](https://www.fab.com/listings/c172b7cc-627b-4665-a35b-3af1f253486c)
+- **Bounding box annotation:** BBoxGen on Fab
+
 Publisher: **ritzredemption**
 
 ---
@@ -277,7 +287,7 @@ Publisher: **ritzredemption**
 
 **The Launch button is greyed out.** No executable was found. Check that
 `LidarExe` was extracted next to the Python scripts, or use **Browse for
-executable ** to point at it directly.
+executable…** to point at it directly.
 
 **The simulation opens in its own window instead of inside the workbench.**
 Embedding is a Windows-only convenience and does not always succeed. The header
@@ -310,5 +320,5 @@ everything in the new capture. Reset the maximum range and re-tick the classes.
 
 See [LICENSE](LICENSE).
 
-The plugin used to build this demo is a separate commercial product with its own
-terms; see the Fab listing.
+The plugins used to build this demo are separate commercial products with their
+own terms; see the Fab listings.

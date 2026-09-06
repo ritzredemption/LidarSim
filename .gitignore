@@ -43,6 +43,9 @@ Build/
 *.tar
 *.tar.gz
 
+# The README preview GIF is small and belongs in the repository.
+!LidarVid.gif
+
 # ---------------------------------------------------------------------------
 # Generated point clouds
 # ---------------------------------------------------------------------------
